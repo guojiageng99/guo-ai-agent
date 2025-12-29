@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: guo-ai-agent
+  datasource:
+    url: jdbc:postgresql://pgm-uf64ho7tw4px771r9o.rwlb.rds.aliyuncs.com:5432/mydb
+    username: myuser
+    password: password01!
+  ai:
+    dashscope:
+      api-key: "sk-ffd3a68542004a0e913afce9d1b2e6bd"
+      chat:
+        options:
+          model: qwen-plus
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: gemma3:1b
+
+#    mcp:
+#      client:
+#        enabled: true
+#        name: my-mcp-client
+#        version: 1.0.0
+#        request-timeout: 30s
+#        type: SYNC
+#        sse:
+#          connections:
+#            server1:
+#              url: http://localhost:8080
+#        stdio:
+#          connections:
+#            server1:
+#              command: /path/to/server
+#              args:
+#                - --port=8080
+#              env:
+#                API_KEY: your-api-key
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+# springdoc-openapi
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.gjg.guoaiagent.controller
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+# searchApi
+search-api:
+  api-key: "PKJhtxgwHcxdZ4nTp1YtvFqS"
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
